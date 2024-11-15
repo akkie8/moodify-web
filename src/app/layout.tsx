@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import '@/globals.css';
 import Link from 'next/link';
-import { AuthProvider } from '@/lib/AuthProvider';
+import { AuthProvider } from '@/components/providers/AuthProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
