@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import '@/globals.css';
 import Link from 'next/link';
+import { AuthProvider } from '@/lib/AuthProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,28 +17,30 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <header className='bg-slate-700 text-white shadow-md'>
-          <nav className='container mx-auto flex justify-between items-center p-4'>
-            <h1 className='text-2xl font-bold'>
-              <Link href='/'>Moodify</Link>
-            </h1>
-            <div className='space-x-4'>
-              <Link href='/login' className='hover:underline'>
-                Login
-              </Link>
-              <Link href='/dashboard' className='hover:underline'>
-                Dashboard
-              </Link>
-              <Link href='/settings' className='hover:underline'>
-                Settings
-              </Link>
-            </div>
-          </nav>
-        </header>
-        {children}
-        <footer className='bg-gray-800 text-white p-4 mt-4'>
-          <p className='text-center'>Moodify © 2024</p>
-        </footer>
+        <AuthProvider>
+          <header className='bg-slate-700 text-white shadow-md'>
+            <nav className='container mx-auto flex justify-between items-center p-4'>
+              <h1 className='text-2xl font-bold'>
+                <Link href='/'>Moodify</Link>
+              </h1>
+              <div className='space-x-4'>
+                <Link href='/login' className='hover:underline'>
+                  Login
+                </Link>
+                <Link href='/dashboard' className='hover:underline'>
+                  Dashboard
+                </Link>
+                <Link href='/settings' className='hover:underline'>
+                  Settings
+                </Link>
+              </div>
+            </nav>
+          </header>
+          {children}
+          <footer className='bg-gray-800 text-white p-4 mt-4'>
+            <p className='text-center'>Moodify © 2024</p>
+          </footer>
+        </AuthProvider>
       </body>
     </html>
   );
