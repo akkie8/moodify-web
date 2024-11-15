@@ -1,7 +1,18 @@
-import { getCurrentUser } from '@/lib/auth';
+'use client';
 
-export const UserGreeting = async () => {
-  const user = await getCurrentUser();
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-  return <h1 className='text-3xl font-bold'>Welcome back, {user?.name || 'User'}!</h1>;
+export const UserGreeting = () => {
+  const router = useRouter();
+
+  useEffect(() => {}, []);
+
+  return (
+    <div className='flex justify-between items-center'>
+      <button onClick={() => router.push('/settings')} className='settings-button'>
+        setting
+      </button>
+    </div>
+  );
 };

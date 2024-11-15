@@ -1,7 +1,13 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 export default function WelcomePage() {
+  const router = useRouter();
+
   return (
     <div className='min-h-screen bg-gradient-to-b from-blue-100 to-purple-100'>
       <main className='container mx-auto px-4 py-12'>
@@ -21,7 +27,9 @@ export default function WelcomePage() {
           <p className='text-nomal mb-8 text-gray-600'>
             Moodifyは、あなたの感情を理解し、前向きな変化をサポートするAIジャーナリングアプリです。
           </p>
-          <Button size='default'>無料で始める</Button>
+          <Button size='default' onClick={() => router.push('/login')}>
+            無料で始める
+          </Button>
         </section>
 
         <section className='grid md:grid-cols-3 gap-8 mb-20'>
