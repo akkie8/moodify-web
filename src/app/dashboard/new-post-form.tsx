@@ -1,13 +1,13 @@
+// components/NewPostForm.tsx
 'use client';
-
 import { useState } from 'react';
-// import { useActionState } from 'react';
-// import { createPost } from '@/lib/actions';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-// import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/lib/AuthProvider';
+import { useRouter } from 'next/navigation';
 
 const moods = [
   { value: 'joy', label: 'Joy', color: 'bg-yellow-500' },
@@ -18,30 +18,43 @@ const moods = [
 ];
 
 export const NewPostForm = () => {
-  // const { toast } = useToast();
+  const { user, loading } = useAuth();
+  console.log('Auth state:', { user, loading });
+  const router = useRouter();
+  const supabase = createClientComponentClient();
+
   const [content, setContent] = useState('');
   const [mood, setMood] = useState('');
-  // const [state, formAction] = useActionState(createPost, {
-  //   onSuccess: (result) => {
-  //     setContent('');
-  //     setMood('');
-  //     toast({
-  //       title: 'Post created',
-  //       description: 'Your mood has been recorded successfully.',
-  //     });
-  //   },
-  //   onError: (error) => {
-  //     toast({
-  //       title: 'Error',
-  //       description: 'Failed to create post. Please try again.',
-  //       variant: 'destructive',
-  //     });
-  //   },
-  // });
+  // const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // formAction({ content, mood });
+    if (!user) {
+      console.error('User is not authenticated');
+      return;
+    }
+
+    // setLoading(true);
+    try {
+      const { error } = await supabase.from('posts').insert({
+        user_id: user.id,
+        content,
+        mood,
+      });
+
+      if (error) {
+        console.error('Error creating post:', error);
+        throw error;
+      }
+
+      setContent('');
+      setMood('');
+      router.refresh();
+    } catch (error) {
+      console.error('Error creating post:', error);
+    } finally {
+      // setLoading(false);
+    }
   };
 
   return (
@@ -61,10 +74,9 @@ export const NewPostForm = () => {
           </div>
         ))}
       </RadioGroup>
-      <Button type='submit'>Posting...</Button>
-      {/* <Button type='submit' disabled={state.success}>
-        {state.success ? 'Posting...' : 'Post Mood'}
-      </Button> */}
+      <Button type='submit' disabled={loading}>
+        {loading ? 'Posting...' : 'Post Mood'}
+      </Button>
     </form>
   );
 };

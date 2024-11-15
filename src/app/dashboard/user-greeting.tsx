@@ -7,7 +7,8 @@ import { useAuth } from '@/lib/AuthProvider';
 
 export const UserGreeting = () => {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  console.log('Auth state:', { user, loading });
 
   useEffect(() => {}, []);
 
