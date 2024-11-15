@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import { RecentPosts } from './recent-posts';
-import { MoodSummary } from './mood-summary';
-import { NewPostForm } from './new-post-form';
-import { UserGreeting } from './user-greeting';
+import { RecentPosts } from './components/RecentPosts';
+import { MoodSummary } from './components/MoodSummary';
+import { NewPostForm } from './components/NewPostForm';
+import { UserGreeting } from './components/UserGreeting';
 
 const DashboardPage = async () => {
   return (
