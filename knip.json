@@ -1,0 +1,6 @@
+{
+  "$schema": "https://unpkg.com/knip@2/schema.json",
+  "entry": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "lib/**/*.{ts,tsx}"],
+  "project": ["**/*.{ts,tsx}"],
+  "ignore": ["node_modules"]
+}

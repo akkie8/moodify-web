@@ -9,7 +9,8 @@
     "lint": "next lint",
     "format": "prettier --write .",
     "prepare": "husky",
-    "ui": "npx shadcn@latest add"
+    "ui": "npx shadcn@latest add",
+    "knip": "knip"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -52,9 +53,12 @@
     "eslint-config-next": "15.0.2",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.6",
+    "knip": "^5.37.0",
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.47",
+    "postcss-load-config": "^6.0.1",
     "prettier": "^3.3.3",
+    "shadcn": "^2.1.6",
     "tailwindcss": "^3.4.14",
     "typescript": "^5"
   }
