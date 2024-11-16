@@ -9,10 +9,10 @@ export default function WelcomePage() {
   const router = useRouter();
 
   return (
-    <div className='min-h-screen bg-gradient-to-b from-blue-100 to-purple-100'>
+    <div className='min-h-screen'>
       <main className='container mx-auto px-4 py-12'>
         <section className='text-center mb-20'>
-          <h1 className='text-4xl font-bold mb-16 text-gray-800'>
+          <h1 className='text-4xl font-bold mb-16 text-gray-800 mt-36'>
             感情を整理し、
             <br />
             新たな気づきを得よう
@@ -24,10 +24,10 @@ export default function WelcomePage() {
             width={300}
             height={100}
           />
-          <p className='text-nomal mb-8 text-gray-600'>
+          <p className='text-nomal mb-16 text-gray-600'>
             Moodifyは、あなたの感情を理解し、前向きな変化をサポートするAIジャーナリングアプリです。
           </p>
-          <Button size='default' onClick={() => router.push('/login')}>
+          <Button size='lg' onClick={() => router.push('/login')}>
             無料で始める
           </Button>
         </section>
