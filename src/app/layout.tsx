@@ -48,6 +48,7 @@ export default function RootLayout({
               <Link href='/notice'>特定商取引法に基づく表記</Link>
               <Link href='/terms'>利用規約</Link>
               <Link href='/policy'>プライバシーポリシー</Link>
+              <Link href='/contact'>お問い合わせ</Link>
             </div>
           </footer>
         </AuthProvider>
