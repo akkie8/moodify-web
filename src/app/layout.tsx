@@ -39,8 +39,14 @@ export default function RootLayout({
             </nav>
           </header>
           {children}
-          <footer className='p-4 mt-4'>
-            <p className='text-center text-gray-500'>Moodify © 2024</p>
+          <footer className='p-4 mt-4 text-center text-gray-500'>
+            <p className='mb-2'>Moodify © 2024</p>
+            <div className='text-sm flex gap-3 items-center justify-center'>
+              <Link href='/about'>運営者情報</Link>
+              <Link href='/notice'>特定商取引法に基づく表記</Link>
+              <Link href='/terms'>利用規約</Link>
+              <Link href='/policy'>プライバシーポリシー</Link>
+            </div>
           </footer>
         </AuthProvider>
       </body>
