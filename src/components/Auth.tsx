@@ -26,7 +26,6 @@ export default function AuthUI() {
         appearance={{ theme: ThemeSupa }}
         providers={['google']}
         redirectTo={`${origin}/auth/callback`}
-        theme='dark'
       />
     </div>
   );

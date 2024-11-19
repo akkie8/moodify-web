@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' className='h-full'>
       <body className='flex flex-col min-h-screen'>
         <AuthProvider>
           <header className='text-white shadow-md'>
@@ -39,7 +39,7 @@ export default function RootLayout({
             </nav>
           </header>
 
-          <main className='flex-grow'>{children}</main>
+          <main className='flex-grow flex'>{children}</main>
 
           <footer className='p-4 mt-4 text-center text-gray-500'>
             <p className='mb-2'>Moodify © 2024</p>
