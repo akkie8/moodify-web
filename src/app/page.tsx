@@ -9,7 +9,7 @@ export default function WelcomePage() {
   const router = useRouter();
 
   return (
-    <>
+    <div className='container mx-auto'>
       <section className='text-center mb-20'>
         <h1 className='text-4xl font-bold mb-16 text-gray-800 mt-36'>
           感情を整理し、
@@ -31,7 +31,7 @@ export default function WelcomePage() {
         </Button>
       </section>
 
-      <section className='grid md:grid-cols-3 gap-8 mb-20'>
+      <section className='grid md:grid-cols-3 gap-8 mb-20 px-20'>
         <FeatureCard
           icon='📝'
           title='簡単投稿'
@@ -49,24 +49,23 @@ export default function WelcomePage() {
         />
       </section>
 
-      <section className='text-center bg-white rounded-lg shadow-lg p-12 mb-20'>
-        <h2 className='text-3xl font-bold mb-6 text-gray-800'>あなたの心の整理をサポートします</h2>
+      <section className='text-center p-12'>
+        <h2 className='text-3xl font-bold mb-20 text-gray-800'>あなたの心の整理をサポートします</h2>
         <Image
-          className='m-auto mb-16'
+          className='m-auto mb-20'
           src='/moonlight.svg'
           alt='Moodify'
           width={300}
           height={100}
         />
-        <p className='text-xl mb-8 text-gray-600'>
+        <p className='text-xl mb-16 text-gray-600'>
           他責から自責へ、そして前向きな行動へ。
           <br />
           Moodifyで、次の一歩を踏み出しましょう。
         </p>
-
         <Button size='lg'>今すぐ始める</Button>
       </section>
-    </>
+    </div>
   );
 }
 
