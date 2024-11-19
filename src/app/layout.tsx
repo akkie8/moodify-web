@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>
+      <body className='flex flex-col min-h-screen'>
         <AuthProvider>
           <header className='text-white shadow-md'>
             <nav className='container mx-auto flex justify-between items-center p-4'>
@@ -38,7 +38,9 @@ export default function RootLayout({
               </div>
             </nav>
           </header>
-          {children}
+
+          <main className='flex-grow'>{children}</main>
+
           <footer className='p-4 mt-4 text-center text-gray-500'>
             <p className='mb-2'>Moodify © 2024</p>
             <div className='text-sm flex gap-3 items-center justify-center'>
