@@ -49,6 +49,7 @@ export default function RootLayout({
               <Link href='/policy'>プライバシーポリシー</Link>
               <Link href='/contact'>お問い合わせ</Link>
             </div>
+            <div className='my-5 h-px bg-gray-200 w-[900px] mx-auto'></div>
             <p className='mb-2'>Moodify © 2025</p>
           </footer>
           {/*<footer className='p-4 mt-4 text-center text-gray-500'>
