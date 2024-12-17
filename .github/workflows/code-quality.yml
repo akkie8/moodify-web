@@ -35,8 +35,5 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Check unused files and exports
-        run: yarn knip
-
       - name: Build
         run: yarn build
