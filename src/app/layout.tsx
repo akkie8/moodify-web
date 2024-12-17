@@ -41,7 +41,8 @@ export default function RootLayout({
 
           <main className='flex-grow flex'>{children}</main>
 
-          <footer className='p-4 mt-4 text-center text-gray-500'>
+          <footer className='p-8 mt-4 text-center text-gray-500  bg-gray-50 '>
+            <div></div>
             <div className='text-sm flex gap-3 items-center justify-center'>
               <Link href='/about'>運営者情報</Link>
               <Link href='/notice'>特定商取引法に基づく表記</Link>
@@ -49,7 +50,7 @@ export default function RootLayout({
               <Link href='/policy'>プライバシーポリシー</Link>
               <Link href='/contact'>お問い合わせ</Link>
             </div>
-            <div className='my-7 h-px bg-gray-200 w-[80%] mx-auto'></div>
+            <div className='my-4 h-px bg-gray-200 w-[85%] mx-auto'></div>
             <p className='mb-2'>Moodify © 2025</p>
           </footer>
         </AuthProvider>
