@@ -6,15 +6,10 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
 jobs:
   lint-type-build:
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'Production' || 'Preview' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -49,9 +44,7 @@ jobs:
     needs: lint-type-build
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment:
-      name: Production
-      url: ${{ steps.deploy.outputs.url }}
+    environment: Production
 
     steps:
       - uses: actions/checkout@v4
@@ -67,15 +60,15 @@ jobs:
 
       - name: Deploy to Production
         id: deploy
-        run: echo "url=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
+        run: |
+          DEPLOY_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
 
   deploy-preview:
     needs: lint-type-build
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    environment:
-      name: Preview
-      url: ${{ steps.deploy.outputs.url }}
+    environment: Preview
 
     steps:
       - uses: actions/checkout@v4
@@ -91,7 +84,9 @@ jobs:
 
       - name: Deploy to Preview
         id: deploy
-        run: echo "url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
+        run: |
+          DEPLOY_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
 
       - name: Comment PR with Deploy URL
         uses: actions/github-script@v7
