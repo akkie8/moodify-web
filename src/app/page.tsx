@@ -58,11 +58,7 @@ export default function WelcomePage() {
           width={300}
           height={100}
         />
-        <p className='text-xl mb-16 text-gray-600'>
-          他責から自責へ、そして前向きな行動へ。
-          <br />
-          Moodifyで、次の一歩を踏み出しましょう。
-        </p>
+        <p className='text-xl mb-16 text-gray-600'>Moodifyで、次の一歩を踏み出しましょう。</p>
         <Button size='lg'>今すぐ始める</Button>
       </section>
     </div>
