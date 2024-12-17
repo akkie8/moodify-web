@@ -1,0 +1,42 @@
+name: Quality & Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-type-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Check code formatting
+        run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,css,scss,md}"
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check unused files and exports
+        run: npm run knip
+
+      - name: Build
+        run: npm run build
+        env:
+          # Add any required environment variables for build
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
