@@ -1,10 +1,14 @@
-name: Quality & Build
+name: Moodify Web Checks
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+env:
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
 jobs:
   lint-type-build:
@@ -17,26 +21,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Type check
-        run: npx tsc --noEmit
+        run: yarn tsc --noEmit
 
       - name: Check code formatting
-        run: npx prettier --check "**/*.{js,jsx,ts,tsx,json,css,scss,md}"
+        run: yarn prettier --check "**/*.{js,jsx,ts,tsx,json,css,scss,md}"
 
       - name: Lint
-        run: npm run lint
+        run: yarn lint
 
       - name: Check unused files and exports
-        run: npm run knip
+        run: yarn knip
 
       - name: Build
-        run: npm run build
-        env:
-          # Add any required environment variables for build
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        run: yarn build
