@@ -49,7 +49,7 @@ export default function RootLayout({
               <Link href='/policy'>プライバシーポリシー</Link>
               <Link href='/contact'>お問い合わせ</Link>
             </div>
-            <div className='my-4 h-px bg-gray-200 w-[85%] mx-auto'></div>
+            <hr className='my-4 bg-gray-200 w-10/12 mx-auto'></hr>
             <p className='mb-2'>Moodify © 2025</p>
           </footer>
         </AuthProvider>
