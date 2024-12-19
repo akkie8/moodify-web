@@ -1,4 +1,3 @@
-// src/components/Auth.tsx
 'use client';
 
 import { Auth } from '@supabase/auth-ui-react';
@@ -14,7 +13,7 @@ export default function AuthUI() {
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
         providers={['google']}
-        redirectTo={`${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`}
+        redirectTo={`${process.env.NEXT_PUBLIC_SITE_URL}/callback`}
       />
     </div>
   );

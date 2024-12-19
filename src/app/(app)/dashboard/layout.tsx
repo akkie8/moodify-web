@@ -1,14 +1,14 @@
-// src/app/dashboard/layout.tsx
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { DashboardNav } from '@/components/dashboard/Nav';
 
 export const dynamic = 'force-dynamic';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = cookies();
+
   const supabase = createServerComponentClient({
-    cookies: cookies,
+    cookies: () => cookieStore,
   });
 
   const {
@@ -20,9 +20,8 @@ export default async function DashboardLayout({ children }: { children: React.Re
   }
 
   return (
-    <div className='flex min-h-screen flex-col'>
-      <DashboardNav user={user} />
-      <main className='flex-1 p-8'>{children}</main>
+    <div className='min-h-screen'>
+      <main className='container mx-auto px-4 py-8'>{children}</main>
     </div>
   );
 }
