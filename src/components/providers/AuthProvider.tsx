@@ -34,20 +34,39 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const fetchUserProfile = useCallback(
     async (authUser: User) => {
       try {
-        const { data, error } = await supabase
+        let data;
+        const { data: initialData, error } = await supabase
           .from('profiles')
           .select('*')
           .eq('id', authUser.id)
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
+        data = initialData;
+
+        if (!data) {
+          const { data: newProfile, error: insertError } = await supabase
+            .from('profiles')
+            .insert([
+              {
+                id: authUser.id,
+                name: null,
+                updated_at: new Date().toISOString(),
+              },
+            ])
+            .select('*')
+            .single();
+
+          if (insertError) throw insertError;
+          data = newProfile;
+        }
 
         setUser({
           ...authUser,
           profile: data,
         });
       } catch (error) {
-        console.error('Error fetching user profile:', error);
+        console.error('Error fetching/creating user profile:', error);
       } finally {
         setLoading(false);
       }
@@ -82,17 +101,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!user) return { error: new Error('No user') };
 
     try {
-      const { error } = await supabase.from('profiles').upsert({
-        id: user.id,
-        ...updates,
-        updated_at: new Date().toISOString(),
-      });
+      const { error } = await supabase
+        .from('profiles')
+        .upsert({
+          id: user.id,
+          ...updates,
+          updated_at: new Date().toISOString(),
+        })
+        .select('*') // 更新後のデータを取得
+        .single();
 
       if (error) throw error;
 
-      if (user) {
-        await fetchUserProfile(user);
-      }
+      // プロフィールを再取得
+      await fetchUserProfile(user);
 
       return { error: null };
     } catch (error) {
