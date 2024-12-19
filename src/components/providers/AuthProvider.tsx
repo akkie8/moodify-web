@@ -34,16 +34,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const fetchUserProfile = useCallback(
     async (authUser: User) => {
       try {
-        let data;
-        const { data: initialData, error } = await supabase
+        // セッション確認
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          setUser(null);
+          setLoading(false);
+          return;
+        }
+
+        // プロフィール取得
+        const { data, error } = await supabase
           .from('profiles')
           .select('*')
           .eq('id', authUser.id)
           .maybeSingle();
 
-        if (error) throw error;
-        data = initialData;
+        // プロフィール取得エラー時
+        if (error) {
+          console.error('Profile fetch error:', error);
+          await supabase.auth.signOut();
+          setUser(null);
+          setLoading(false);
+          return;
+        }
 
+        // プロフィールが存在しない場合は作成
         if (!data) {
           const { data: newProfile, error: insertError } = await supabase
             .from('profiles')
@@ -57,16 +74,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             .select('*')
             .single();
 
-          if (insertError) throw insertError;
-          data = newProfile;
-        }
+          if (insertError) {
+            console.error('Profile creation error:', insertError);
+            await supabase.auth.signOut();
+            setUser(null);
+            setLoading(false);
+            return;
+          }
 
-        setUser({
-          ...authUser,
-          profile: data,
-        });
+          setUser({
+            ...authUser,
+            profile: newProfile,
+          });
+        } else {
+          setUser({
+            ...authUser,
+            profile: data,
+          });
+        }
       } catch (error) {
-        console.error('Error fetching/creating user profile:', error);
+        console.error('Error in profile management:', error);
+        await supabase.auth.signOut();
+        setUser(null);
       } finally {
         setLoading(false);
       }
@@ -75,22 +104,36 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const initializeAuth = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (session?.user) {
-        fetchUserProfile(session.user);
+        await fetchUserProfile(session.user);
+        if (window.location.pathname === '/login') {
+          window.location.href = '/dashboard';
+        }
       } else {
         setLoading(false);
       }
-    });
+    };
+
+    initializeAuth();
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
-        fetchUserProfile(session.user);
+        await fetchUserProfile(session.user);
+        if (window.location.pathname === '/login') {
+          window.location.href = '/dashboard';
+        }
       } else {
         setUser(null);
         setLoading(false);
+        if (!window.location.pathname.startsWith('/login')) {
+          window.location.href = '/login';
+        }
       }
     });
 
@@ -101,21 +144,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!user) return { error: new Error('No user') };
 
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .upsert({
-          id: user.id,
-          ...updates,
-          updated_at: new Date().toISOString(),
-        })
-        .select('*') // 更新後のデータを取得
-        .single();
+      const { error } = await supabase.from('profiles').upsert({
+        id: user.id,
+        ...updates,
+        updated_at: new Date().toISOString(),
+      });
 
       if (error) throw error;
 
       // プロフィールを再取得
       await fetchUserProfile(user);
-
       return { error: null };
     } catch (error) {
       console.error('Error updating profile:', error);

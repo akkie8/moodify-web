@@ -2,21 +2,12 @@
 
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { createClient } from '@supabase/supabase-js';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect, useState } from 'react';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  {
-    auth: {
-      persistSession: true,
-    },
-  }
-);
 
 export default function AuthUI() {
   const [origin, setOrigin] = useState('');
+  const supabase = createClientComponentClient();
 
   useEffect(() => {
     setOrigin(window.location.origin);
