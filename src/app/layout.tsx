@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import '@/globals.css';
+import '@/styles/globals.css';
 import Link from 'next/link';
 // import { AuthProvider } from '@/components/providers/AuthProvider';
 import Image from 'next/image';

@@ -1,4 +1,4 @@
-import AuthUI from '@/components/Auth';
+import AuthUI from '@/components/auth/AuthForm';
 
 export default function LoginPage() {
   return (

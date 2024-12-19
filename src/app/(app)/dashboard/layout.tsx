@@ -2,7 +2,9 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { DashboardNav } from '@/components/dashboard/nav';
+import { DashboardNav } from '@/components/dashboard/Nav';
+
+export const dynamic = 'force-dynamic';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const supabase = createServerComponentClient({
