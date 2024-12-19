@@ -1,36 +1,33 @@
+// middleware.ts
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const publicPaths = ['/', '/login', '/about', '/notice', '/terms', '/policy', '/contact'];
-
-export async function middleware(request: NextRequest) {
+export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const supabase = createMiddlewareClient({ req: request, res });
-
-  console.log('Middleware path:', request.nextUrl.pathname);
+  const supabase = createMiddlewareClient({ req, res });
 
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const pathname = request.nextUrl.pathname;
-
-  if (pathname.startsWith('/_next') || pathname.startsWith('/api') || pathname.includes('.')) {
-    return res;
-  }
-
-  if (publicPaths.includes(pathname)) {
-    if (session && pathname === '/login') {
-      console.log('Redirecting to dashboard');
-      return NextResponse.redirect(new URL('/dashboard', request.nextUrl.origin));
+  // ダッシュボードへのアクセスを保護
+  if (req.nextUrl.pathname.startsWith('/dashboard')) {
+    if (!session) {
+      return NextResponse.redirect(new URL('/login', req.url));
     }
-    return res;
   }
 
-  if (!session) {
-    return NextResponse.redirect(new URL('/login', request.url));
+  // ログイン済みユーザーがauth関連ページにアクセスした場合はリダイレクト
+  if (['/login'].includes(req.nextUrl.pathname)) {
+    if (session) {
+      return NextResponse.redirect(new URL('/dashboard', req.url));
+    }
   }
 
   return res;
 }
+
+export const config = {
+  matcher: ['/dashboard/:path*', '/login'],
+};
