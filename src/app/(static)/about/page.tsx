@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function CompanyInfo() {
   return (
-    <div className='min-h-screen bg-gradient-to-b from-blue-50 to-purple-50 py-12'>
+    <div className='w-full min-h-screen py-12 bg-gradient-to-b from-blue-50 to-purple-50'>
       <div className='container mx-auto px-4'>
         <h1 className='text-3xl font-bold mb-8'>運営者情報</h1>
         <div className='bg-white rounded-lg shadow-md p-6'>
