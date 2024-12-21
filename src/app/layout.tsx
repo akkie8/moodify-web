@@ -42,7 +42,7 @@ export default function RootLayout({
         <main className='flex-grow flex'>{children}</main>
 
         <footer className='text-center p-4 text-gray-500 bg-gray-50'>
-          <div className='flex flex-col items-center justify-center gap-3 text-sm sm:flex-row'>
+          <div className='flex flex-col items-center justify-center gap-3 text-sm md:flex-row'>
             <Link href='/about'>運営者情報</Link>
             <Link href='/notice'>特定商取引法に基づく表記</Link>
             <Link href='/terms'>利用規約</Link>
