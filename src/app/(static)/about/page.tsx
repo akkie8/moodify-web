@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function CompanyInfo() {
   return (
     <div className='w-full min-h-screen py-12 bg-gradient-to-b from-blue-50 to-purple-50'>
-      <div className='container mx-auto px-4'>
+      <div className='container mx-auto px-4 text-center'>
         <h1 className='text-3xl font-bold mb-8'>運営者情報</h1>
         <div className='bg-white rounded-lg shadow-md p-6'>
           <h2 className='text-xl font-semibold mb-2'>サービス名</h2>
