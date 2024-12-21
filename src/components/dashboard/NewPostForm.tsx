@@ -1,12 +1,12 @@
 // components/NewPostForm.tsx
 'use client';
 import { useState } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+// import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { useAuth } from '@/components/providers/AuthProvider';
+
 import { useRouter } from 'next/navigation';
 
 const moods = [
@@ -18,10 +18,8 @@ const moods = [
 ];
 
 export const NewPostForm = () => {
-  const { user, loading } = useAuth();
-  console.log('Auth state:', { user, loading });
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  // const supabase = createClientComponentClient();
 
   const [content, setContent] = useState('');
   const [mood, setMood] = useState('');
@@ -29,23 +27,18 @@ export const NewPostForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) {
-      console.error('User is not authenticated');
-      return;
-    }
 
-    // setLoading(true);
     try {
-      const { error } = await supabase.from('posts').insert({
-        user_id: user.id,
-        content,
-        mood,
-      });
+      // const { error } = await supabase.from('posts').insert({
+      //   user_id: user.id,
+      //   content,
+      //   mood,
+      // });
 
-      if (error) {
-        console.error('Error creating post:', error);
-        throw error;
-      }
+      // if (error) {
+      //   console.error('Error creating post:', error);
+      //   throw error;
+      // }
 
       setContent('');
       setMood('');
@@ -74,9 +67,7 @@ export const NewPostForm = () => {
           </div>
         ))}
       </RadioGroup>
-      <Button type='submit' disabled={loading}>
-        {loading ? 'Posting...' : 'Post Mood'}
-      </Button>
+      <Button type='submit'>Post Mood</Button>
     </form>
   );
 };

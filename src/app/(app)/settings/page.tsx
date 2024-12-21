@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import { updateProfile, deleteAllData } from '@/actions/user-settings';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -46,9 +47,9 @@ export default function SettingsPage() {
     }
   };
 
-  const handleLogout = () => {
-    // TODO: Implement actual logout logic
-    console.log('Logging out');
+  const handleLogout = async () => {
+    const supabase = createClientComponentClient();
+    await supabase.auth.signOut();
     router.push('/login');
   };
 
