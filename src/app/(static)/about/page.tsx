@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function CompanyInfo() {
   return (
-    <div className='container mx-auto px-4 text-center'>
+    <div className='container mx-auto flex flex-col justify-center text-center px-4 py-16'>
       <h1 className='text-3xl font-bold mb-8'>運営者情報</h1>
       <h2 className='text-xl font-semibold mb-2'>サービス名</h2>
       <p className='mb-4'>Moodify</p>
