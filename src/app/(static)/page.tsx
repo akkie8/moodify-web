@@ -24,7 +24,7 @@ export default function WelcomePage() {
           height={100}
         />
         <p className='text-nomal mb-16 text-gray-600'>
-          Moodifyは、あなたの感情を理解し、前向きな変化をサポートするAIジャーナリングアプリです。
+          Omoma は、あなたの感情を理解し、前向きな変化をサポートするAIジャーナリングアプリです。
         </p>
         <Button size='lg' onClick={() => router.push('/login')}>
           無料で始める
