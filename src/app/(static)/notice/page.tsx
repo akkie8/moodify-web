@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function LegalNotice() {
   return (
-    <div className='container mx-auto text-sm px-4'>
+    <div className='container max-w-none px-4 py-5 text-sm md:max-w-lg md:mx-auto'>
       <h1 className='mb-8 text-base font-medium'>特定商取引法に基づく表記</h1>
 
       <h2 className='mb-2 text-sm'>販売業者</h2>
@@ -36,7 +36,7 @@ export default function LegalNotice() {
         デジタルコンテンツの性質上、購入後のキャンセル・返品はお受けできません。
       </p>
 
-      <p className='mb-5'>
+      <p>
         <Link href='/' className='text-blue-600 hover:underline'>
           ホームに戻る
         </Link>
