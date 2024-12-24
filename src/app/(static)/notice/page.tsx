@@ -36,7 +36,7 @@ export default function LegalNotice() {
         デジタルコンテンツの性質上、購入後のキャンセル・返品はお受けできません。
       </p>
 
-      <p className='mt-8'>
+      <p className='mb-5'>
         <Link href='/' className='text-blue-600 hover:underline'>
           ホームに戻る
         </Link>
