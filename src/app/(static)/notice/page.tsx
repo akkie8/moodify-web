@@ -11,7 +11,7 @@ export default function LegalNotice() {
       <p className='mb-5 pb-5 tracking-widest border-b'>Moodify（個人事業主）</p>
 
       <h2 className='mb-2 tracking-widest text-sm'>運営責任者</h2>
-      <p className='mb-5 pb-5 leading-6 tracking-widest border-b'>山田 亜樹</p>
+      <p className='mb-5 pb-5 tracking-widest border-b'>山田 亜樹</p>
 
       <h2 className='mb-2 tracking-widest text-sm'>連絡先</h2>
       <p className='mb-5 pb-5 leading-6 tracking-widest border-b'>
