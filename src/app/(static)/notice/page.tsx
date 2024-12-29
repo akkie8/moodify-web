@@ -3,9 +3,7 @@ import Link from 'next/link';
 export default function LegalNotice() {
   return (
     <div className='container max-w-md mx-0 px-4 py-10 tracking-widest leading-6 text-sm md:max-w-xl md:mx-auto'>
-      <h1 className='mb-8 tracking-widest text-base font-medium md:text-center'>
-        特定商取引法に基づく表記
-      </h1>
+      <h1 className='mb-8 text-base font-medium md:text-center'>特定商取引法に基づく表記</h1>
 
       <h2 className='mb-2 text-sm'>販売業者</h2>
       <p className='mb-5 pb-5 border-b'>Moodify（個人事業主）</p>

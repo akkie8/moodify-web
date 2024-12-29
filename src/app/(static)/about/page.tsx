@@ -11,7 +11,7 @@ export default function CompanyInfo() {
       <p className='mb-5 pb-5 border-b'>山田 亜樹（個人事業主）</p>
 
       <h2 className='mb-2 text-sm'>事業内容</h2>
-      <p className='mb-5  pb-5 border-b'>
+      <p className='mb-5 pb-5 border-b'>
         - ウェブサービス「Moodify」の企画・開発・運営
         <br />
         - 感情分析AIの研究開発
