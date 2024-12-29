@@ -11,8 +11,12 @@ export default function PrivacyPolicy() {
       </p>
       <h2 className='p-2 mb-4 tracking-widest text-base bg-gray-100'>1. 収集する情報</h2>
       <p className='mb-5 pb-5 leading-6 border-b'>
-        当サービスは、サービス提供に必要な範囲で以下の情報を収集します： -
-        ユーザー登録情報（メールアドレス、パスワード等） - 利用履歴 - 感情記録データ
+        当サービスは、サービス提供に必要な範囲で以下の情報を収集します。
+        <br />
+        - ユーザー登録情報（メールアドレス、パスワード等）
+        <br />
+        - 利用履歴
+        <br />- 感情記録データ
       </p>
       <h2 className='p-2 mb-4 tracking-widest text-base bg-gray-100'>2. 情報の利用目的</h2>
       <p className='mb-5 pb-5 leading-6 border-b'>
