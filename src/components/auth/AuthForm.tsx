@@ -8,7 +8,7 @@ export default function AuthUI() {
   const supabase = createClientComponentClient();
 
   return (
-    <div className='w-full max-w-md mx-auto p-4'>
+    <div className='mx-auto w-96 p-4'>
       <Auth
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}

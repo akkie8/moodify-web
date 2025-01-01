@@ -54,8 +54,8 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className='container mx-auto px-4 py-12 flex justify-center items-center'>
-      <Card className='w-96 mx-auto'>
+    <div className='container mx-auto flex items-center justify-center px-4 py-12'>
+      <Card className='mx-auto w-96'>
         <CardHeader>
           <CardTitle className='text-2xl font-bold'>設定</CardTitle>
         </CardHeader>
@@ -91,7 +91,7 @@ export default function SettingsPage() {
             </div>
           )}
 
-          <div className='pt-6 border-t flex justify-center'>
+          <div className='flex justify-center border-t pt-6'>
             <Button className='w-64' onClick={handleDeleteData} variant='destructive'>
               すべてのデータを削除
             </Button>
@@ -111,7 +111,7 @@ export default function SettingsPage() {
           )}
         </CardContent>
         <CardFooter>
-          <div className='w-full flex justify-center'>
+          <div className='flex w-full justify-center'>
             <Button className='w-64' onClick={handleLogout} variant='outline'>
               ログアウト
             </Button>

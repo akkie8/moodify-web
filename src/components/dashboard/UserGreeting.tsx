@@ -13,7 +13,7 @@ export const UserGreeting = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex items-center justify-between'>
       <h1 className='text-2xl font-bold'>
         {/* {user?.profile?.name ? `Welcome, ${user.profile.name}!` : 'Welcome!'} */}
       </h1>

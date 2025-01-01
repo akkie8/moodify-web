@@ -10,8 +10,8 @@ export default function WelcomePage() {
 
   return (
     <div className='container mx-auto'>
-      <section className='text-center mb-20'>
-        <h1 className='text-4xl font-bold mb-16 text-gray-800 mt-36'>
+      <section className='mb-20 text-center'>
+        <h1 className='mb-16 mt-36 text-4xl font-bold text-gray-800'>
           感情を整理し、
           <br />
           新たな気づきを得よう
@@ -31,7 +31,7 @@ export default function WelcomePage() {
         </Button>
       </section>
 
-      <section className='grid md:grid-cols-3 gap-8 mb-20 px-20'>
+      <section className='mb-20 grid gap-8 px-20 md:grid-cols-3'>
         <FeatureCard
           icon='📝'
           title='簡単投稿'
@@ -49,8 +49,8 @@ export default function WelcomePage() {
         />
       </section>
 
-      <section className='text-center p-12'>
-        <h2 className='text-3xl font-bold mb-20 text-gray-800'>あなたの心の整理をサポートします</h2>
+      <section className='p-12 text-center'>
+        <h2 className='mb-20 text-3xl font-bold text-gray-800'>あなたの心の整理をサポートします</h2>
         <Image
           className='m-auto mb-20'
           src='/moonlight.svg'
@@ -58,8 +58,10 @@ export default function WelcomePage() {
           width={300}
           height={100}
         />
-        <p className='text-xl mb-16 text-gray-600'>Moodifyで、次の一歩を踏み出しましょう。</p>
-        <Button size='lg'>今すぐ始める</Button>
+        <p className='mb-16 text-xl text-gray-600'>Moodifyで、次の一歩を踏み出しましょう。</p>
+        <Button size='lg' onClick={() => router.push('/login')}>
+          今すぐ始める
+        </Button>
       </section>
     </div>
   );
@@ -77,8 +79,8 @@ function FeatureCard({
   return (
     <Card className='text-center'>
       <CardContent className='pt-6'>
-        <div className='text-4xl mb-4'>{icon}</div>
-        <h3 className='text-xl font-semibold mb-2 text-gray-800'>{title}</h3>
+        <div className='mb-4 text-4xl'>{icon}</div>
+        <h3 className='mb-2 text-xl font-semibold text-gray-800'>{title}</h3>
         <p className='text-gray-600'>{description}</p>
       </CardContent>
     </Card>
