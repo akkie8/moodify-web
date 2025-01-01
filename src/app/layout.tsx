@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Kosugi, Alegreya } from 'next/font/google';
 import '@/styles/globals.css';
-import Link from 'next/link';
 import { MainHeader } from '@/components/dashboard/MainHeader';
+import { MainFooter } from '@/components/common/MainFooter';
+
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Omoma',
@@ -34,17 +35,7 @@ export default function RootLayout({
       <body className='flex flex-col min-h-screen'>
         <MainHeader />
         <main className='flex-grow flex'>{children}</main>
-        <footer className='text-center p-4 text-gray-500 bg-gray-50'>
-          <div className='flex flex-col items-center justify-center gap-3 text-sm md:flex-row'>
-            <Link href='/about'>運営者情報</Link>
-            <Link href='/notice'>特定商取引法に基づく表記</Link>
-            <Link href='/terms'>利用規約</Link>
-            <Link href='/policy'>プライバシーポリシー</Link>
-            <Link href='/contact'>お問い合わせ</Link>
-          </div>
-          <hr className='w-10/12 mx-auto my-4 bg-gray-200'></hr>
-          <p className='mb-2'>Moodify © 2025</p>
-        </footer>
+        <MainFooter />
       </body>
     </html>
   );

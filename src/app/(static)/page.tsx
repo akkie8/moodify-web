@@ -59,7 +59,9 @@ export default function WelcomePage() {
           height={100}
         />
         <p className='text-xl mb-16 text-gray-600'>Moodifyで、次の一歩を踏み出しましょう。</p>
-        <Button size='lg'>今すぐ始める</Button>
+        <Button size='lg' onClick={() => router.push('/login')}>
+          今すぐ始める
+        </Button>
       </section>
     </div>
   );

@@ -14,7 +14,7 @@ export const MainHeader = async () => {
   } = await supabase.auth.getSession();
 
   return (
-    <header className='text-white shadow-md'>
+    <header className='text-white'>
       <nav className='max-w-6xl container mx-auto flex justify-between items-center p-2'>
         <div className='w-[160px]'></div>
         <h1 className='text-2xl font-bold'>
