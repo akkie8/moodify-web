@@ -32,9 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ja' className={`h-full ${kosugi.variable} ${alegreya.variable}`}>
-      <body className='flex flex-col min-h-screen'>
+      <body className='flex min-h-screen flex-col'>
         <MainHeader />
-        <main className='flex-grow flex'>{children}</main>
+        <main className='flex flex-grow'>{children}</main>
         <MainFooter />
       </body>
     </html>

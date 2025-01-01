@@ -5,7 +5,7 @@ export const RecentPosts = async () => {
   const posts = await getRecentPosts();
 
   return (
-    <div className='space-y-4 mt-8'>
+    <div className='mt-8 space-y-4'>
       <h2 className='text-2xl font-semibold'>Recent Posts</h2>
       {posts.map((post) => (
         <Card key={post.id}>
@@ -14,7 +14,7 @@ export const RecentPosts = async () => {
           </CardHeader>
           <CardContent>
             <p>{post.content}</p>
-            <p className='text-sm text-muted-foreground mt-2'>
+            <p className='mt-2 text-sm text-muted-foreground'>
               {new Date(post.createdAt).toLocaleString()}
             </p>
           </CardContent>

@@ -8,7 +8,7 @@ const DashboardPage = async () => {
   return (
     <div className='container mx-auto px-4 py-8'>
       <UserGreeting />
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mt-8'>
+      <div className='mt-8 grid grid-cols-1 gap-6 md:grid-cols-3'>
         <div className='md:col-span-2'>
           <NewPostForm />
           <Suspense fallback={<div>Loading recent posts...</div>}>

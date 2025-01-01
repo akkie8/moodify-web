@@ -15,14 +15,14 @@ export const MainHeader = async () => {
 
   return (
     <header className='text-white'>
-      <nav className='max-w-6xl container mx-auto flex justify-between items-center p-2'>
+      <nav className='container mx-auto flex max-w-6xl items-center justify-between p-2'>
         <div className='w-[160px]'></div>
         <h1 className='text-2xl font-bold'>
           <Link href='/'>
             <Image src='/omoma.png' alt='Moodify' width={160} height={40} />
           </Link>
         </h1>
-        <div className='w-[160px] flex justify-end space-x-4 text-slate-700'>
+        <div className='flex w-[160px] justify-end space-x-4 text-slate-700'>
           <MenuButton session={session} />
         </div>
       </nav>
