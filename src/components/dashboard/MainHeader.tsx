@@ -18,7 +18,7 @@ export const MainHeader = async () => {
       <nav className='container mx-auto flex max-w-6xl items-center justify-between p-2'>
         <div className='w-[160px]'></div>
         <h1 className='text-2xl font-bold'>
-          <Link href='/'>
+          <Link href={session ? '/dashboard' : '/'}>
             <Image src='/omoma.png' alt='Moodify' width={160} height={40} />
           </Link>
         </h1>
