@@ -1,13 +1,28 @@
 import type { Metadata } from 'next';
-
+import { Kosugi, Alegreya } from 'next/font/google';
 import '@/styles/globals.css';
 import Link from 'next/link';
-// import { AuthProvider } from '@/components/providers/AuthProvider';
-import Image from 'next/image';
+import { MainHeader } from '@/components/dashboard/MainHeader';
+
 export const metadata: Metadata = {
-  title: 'Moodify',
-  description: 'Moodify is a social media platform for sharing your mood.',
+  title: 'Omoma',
+  description: 'Omoma is a social media platform for sharing your mood.',
 };
+
+export const kosugi = Kosugi({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-kosugi',
+});
+
+export const alegreya = Alegreya({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-alegreya',
+});
 
 export default function RootLayout({
   children,
@@ -15,30 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='h-full'>
+    <html lang='ja' className={`h-full ${kosugi.variable} ${alegreya.variable}`}>
       <body className='flex flex-col min-h-screen'>
-        {/* <AuthProvider> */}
-        <header className='text-white shadow-md'>
-          <nav className='container mx-auto flex justify-between items-center p-4'>
-            <h1 className='text-2xl font-bold'>
-              <Link href='/'>
-                <Image src='/moodify.svg' alt='Moodify' width={120} height={32} />
-              </Link>
-            </h1>
-            <div className='space-x-4 text-gray-500'>
-              <Link href='/login' className='hover:underline'>
-                Login
-              </Link>
-              <Link href='/dashboard' className='hover:underline'>
-                Dashboard
-              </Link>
-              <Link href='/settings' className='hover:underline'>
-                Settings
-              </Link>
-            </div>
-          </nav>
-        </header>
-
+        <MainHeader />
         <main className='flex-grow flex'>{children}</main>
 
         <footer className='text-center p-4 text-gray-500 bg-gray-50'>
@@ -52,7 +46,6 @@ export default function RootLayout({
           <hr className='w-10/12 mx-auto my-4 bg-gray-200'></hr>
           <p className='mb-2'>Moodify © 2025</p>
         </footer>
-        {/* </AuthProvider> */}
       </body>
     </html>
   );
