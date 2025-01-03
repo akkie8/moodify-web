@@ -1,5 +1,5 @@
 import Link from 'next/link';
-
+import { Button } from '@/components/ui/button';
 export default function PrivacyPolicy() {
   return (
     <div className='container mx-0 max-w-md px-4 py-10 text-sm leading-6 tracking-widest md:mx-auto md:max-w-xl'>
@@ -33,8 +33,8 @@ export default function PrivacyPolicy() {
         当サービスは、必要に応じて本ポリシーを変更することがあります。変更後のポリシーは、本ページで公開された時点で効力を生じるものとします。
       </p>
       <p className='text-center'>
-        <Link href='/' className='text-blue-600 hover:underline'>
-          ホームに戻る
+        <Link href='/'>
+          <Button size='lg'>ホームに戻る</Button>
         </Link>
       </p>
     </div>
