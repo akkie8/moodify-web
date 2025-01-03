@@ -1,5 +1,5 @@
 import Link from 'next/link';
-
+import { Button } from '@/components/ui/button';
 export default function TermsOfService() {
   return (
     <div className='container mx-0 max-w-md px-4 py-10 text-sm leading-6 tracking-widest md:mx-auto md:max-w-xl'>
@@ -33,8 +33,8 @@ export default function TermsOfService() {
         当サービスは、ユーザーに通知することなく、本サービスの内容を変更しまたは本サービスの提供を中止することができるものとし、これによってユーザーに生じた損害について一切の責任を負いません。
       </p>
       <p className='text-center'>
-        <Link href='/' className='text-blue-600 hover:underline'>
-          ホームに戻る
+        <Link href='/'>
+          <Button size='lg'>ホームに戻る</Button>
         </Link>
       </p>
     </div>

@@ -38,8 +38,8 @@ export default function LegalNotice() {
       </p>
 
       <p className='text-center'>
-        <Link href='/' className='text-blue-600 hover:underline'>
-          <Button>ホームに戻る</Button>
+        <Link href='/'>
+          <Button size='lg'>ホームに戻る</Button>
         </Link>
       </p>
     </div>
