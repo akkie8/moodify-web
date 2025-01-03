@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default function CompanyInfo() {
   return (
@@ -26,8 +27,8 @@ export default function CompanyInfo() {
       </p>
 
       <p className='text-center'>
-        <Link href='/' className='text-blue-600 hover:underline'>
-          ホームに戻る
+        <Link href='/'>
+          <Button size='lg'>ホームに戻る</Button>
         </Link>
       </p>
     </div>

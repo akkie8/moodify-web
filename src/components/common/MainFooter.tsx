@@ -10,7 +10,7 @@ export function MainFooter() {
         <Link href='/policy'>プライバシーポリシー</Link>
         <Link href='/contact'>お問い合わせ</Link>
       </div>
-      <hr className='mx-auto my-4 w-10/12 border-gray-200'></hr>
+      <hr className='mx-auto my-4 w-11/12 border-gray-200 md:w-10/12'></hr>
       <p className='mb-1'>omoma © 2025</p>
     </footer>
   );
